@@ -1,6 +1,5 @@
 import requests
 
-url = "http://127.0.0.1:5000"
 data = {
     "tags": [
         [
@@ -112,13 +111,15 @@ data = {
         "a bunch of cars that are in the street"
     ]
 }
+
+url = "http://127.0.0.1:5000"
 response = requests.get(url, json=data)
 
 def handle_response(response: requests.Response):
     if response.status_code == 200:
         print("Request was successful!")
         print(response.json())
-        return response.json()
     else:
         print(f"Request failed with status code {response.status_code} : {response.text}")
+
 handle_response(response)
