@@ -1,15 +1,26 @@
+# Translation imports
 from deep_translator import GoogleTranslator
+import re
+
 # Flask imports
 from flask import Flask, request
 from flask_cors import CORS
-import json
-import re
 
+# Initialise the translator with Google Translate as driver
 translator = GoogleTranslator(source='en', target='fr')
 
 def translate(keywords, captions):
+    """
+    Translates the given keywords based on their context in the captions. 
+    Uses a feature from the GoogleTranslator that allows traduction of <span> blocks in html pages.
+
+    :keywords:      A list of [keyword, percentage] to translate. 
+    :captions:      A list of captions the keywords were generated from.
+    :return:        A JSON object of the translated keywords and captions
+    """
     translated_keywords = []
 
+    # Initialise the regex to detect keyword span block
     regex = r'<span>[\ ]?(.*?)[\ ]?' + re.escape('</span>')
 
     for keyword, prob in keywords:
@@ -33,6 +44,9 @@ CORS(app)
 
 @app.route("/", methods=["GET", "POST"])
 def handle_request():
+    """
+    Route handler. Get a POST request with a JSON in the body and return a translated JSON. 
+    """
     if request.method == "POST":
         request_data = request.get_json()
         translated_data = translate(request_data["tags"], request_data["english_cap"])
