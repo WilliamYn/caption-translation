@@ -22,31 +22,34 @@ https://hub.docker.com/r/wayr/translation_flask_app
 Le Docker déploie une application Flask sur la route 80 du conteneur. Il n'y a qu'une seule route rendue disponnible par ce service, qui est la route par défault ("/"). Pour effectuer la traduction, on envoie une requête post avec un JSON des éléments à traduire à cette route.
 
 ### Input JSON
+  ```
 {
-  "tags": [
-    ["tag1", 0.38]
-    ["tag2", 0.12]
-    ...
-    ["tagX", 0.01]
-  ],
-  "english_captions": [
-    "The sentence the tags were generated from.",
-    ...,
-    "Another sentence the tags were generated from."
-  ]
+    "tags": [
+        ["tag1", 0.38],
+        ["tag2", 0.12],
+        ...,
+        ["tagX", 0.01]
+    ],
+    "english_captions": [
+        "The sentence the tags were generated from.",
+        ...,
+        "Another sentence the tags were generated from."
+    ]
 }
-
+```
 ### Output JSON
+ ```
 {
-  "tags": [
-    ["tag1", 0.38, ["traduction1"]]
-    ["tag2", 0.12, ["traduction2"]]
-    ...
-    ["tagX", 0.01, ["traductionX1", "traductionX2", ...]]
-  ],
-  "english_captions": [
-    ("The sentence the tags were generated from.","La phrase à partir de laquelle les balises ont été générées.")
-    ...,
-    ("Another sentence the tags were generated from.", "Une autre phrase à partir de laquelle les balises ont été générées.")
-  ]
+    "tags": [
+        ["tag1", 0.38, ["traduction1"]],
+        ["tag2", 0.12, ["traduction2"]],
+        ...,
+        ["tagX", 0.01, ["traductionX1", "traductionX2", ...]]
+    ],
+    "english_captions": [
+        ("The sentence the tags were generated from.","La phrase à partir de laquelle les balises ont été générées.")
+        ...,
+        ("Another sentence the tags were generated from.", "Une autre phrase à partir de laquelle les balises ont été générées.")
+    ]
 }
+  ```
