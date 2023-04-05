@@ -2,120 +2,38 @@
 
 import requests
 
+
 data = {
+    "english_cap": [
+            "three playing cards and one ace for jacks n",
+            "three playing cards with the same image and different colors",
+            "two different cards with hearts and a one with a shadow",
+            "a pair of playing cards that are both with hearts",
+            "a pair of playing cards with hearts on them",
+            "three playing cards with one playing card in the middle"
+        ],
     "tags": [
         [
-            "traffic",
-            0.7948160767555237
+            "ace",
+            0.598117470741272
         ],
         [
-            "freeway",
-            0.08834600448608398
+            "cards",
+            0.21348552405834198
         ],
         [
-            "cars",
-            0.02651975117623806
+            "card",
+            0.15310586988925934
         ],
         [
-            "direction",
-            0.025509683415293694
-        ],
-        [
-            "lanes",
-            0.015784043818712234
-        ],
-        [
-            "road",
-            0.010963880456984043
-        ],
-        [
-            "exit",
-            0.006227716337889433
-        ],
-        [
-            "europe",
-            0.005784913897514343
-        ],
-        [
-            "full",
-            0.005649014841765165
-        ],
-        [
-            "busy",
-            0.004490676335990429
-        ],
-        [
-            "city",
-            0.004447447136044502
-        ],
-        [
-            "towards",
-            0.002754420507699251
-        ],
-        [
-            "traveling",
-            0.0017260592430830002
-        ],
-        [
-            "going",
-            0.0016977312043309212
-        ],
-        [
-            "heavy",
-            0.0013506737304851413
-        ],
-        [
-            "street",
-            0.001317215384915471
-        ],
-        [
-            "signs",
-            0.0010754705872386694
-        ],
-        [
-            "one",
-            0.0005146128823980689
-        ],
-        [
-            "many",
-            0.00032997032394632697
-        ],
-        [
-            "showing",
-            0.00017075767391361296
-        ],
-        [
-            "multiple",
-            0.00015955971321091056
-        ],
-        [
-            "view",
-            0.00013871821283828467
-        ],
-        [
-            "bunch",
-            0.00011566036846488714
-        ],
-        [
-            "open",
-            0.00010997253411915153
+            "jacks",
+            0.017633328214287758
         ]
-    ],
-    "captions": [
-        "a bunch of cars that are in the street"
-    ],
-    "english_cap": [
-        "many cars traveling on a city street with multiple lanes",
-        "a view down a busy street showing the exit to an open road",
-        "a street full of cars and street signs",
-        "a freeway full of traffic going towards one direction",
-        "heavy traffic on a freeway in europe",
-        "a bunch of cars that are in the street"
     ]
 }
 
 url = "http://127.0.0.1:5000"
-response = requests.get(url, json=data)
+response = requests.post(url, json=data)
 
 def handle_response(response: requests.Response):
     if response.status_code == 200:
