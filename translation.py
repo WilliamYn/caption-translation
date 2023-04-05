@@ -29,6 +29,7 @@ def translate(keywords, captions):
 
         translated_copy = translator.translate(text=copy)
         result = re.findall(regex, translated_copy)
+        result = [word for word in result if word.strip() != ""]
         if result:
             translated_keywords.append([keyword, prob, list(set(result))])
         else: 
